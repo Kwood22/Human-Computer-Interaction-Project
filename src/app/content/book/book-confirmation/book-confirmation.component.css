@@ -1,0 +1,11 @@
+.vl {
+    border-left: 1px solid #5d5f61;
+    
+}
+
+.banner{
+    background-image: url('../../../../assets/images/banner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

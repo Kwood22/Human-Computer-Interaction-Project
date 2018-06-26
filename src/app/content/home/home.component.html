@@ -1,0 +1,28 @@
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h1 class="mb-5">Welcome to CemAir</h1>
+            </div>
+            <div class="col-md-12 mx-auto">                
+                <div class="btn-container">
+                    <button class="btn btn-primary btn-lg btn-home" (click)="toggleCarret('bookCarret')" routerLink="/home/book"><i class="fa fa-plane"></i>&nbsp;&nbsp;Book</button>
+                    <i id="bookCarret" class="home-carret fa fa-sort-down"></i>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary btn-lg btn-home" (click)="toggleCarret('manageCarret')" routerLink="/home/manage"><i class="fa fa-ticket-alt"></i>&nbsp;&nbsp;Manage</button>
+                    <i id="manageCarret" class="home-carret fa fa-sort-down"></i>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary btn-lg btn-home" (click)="toggleCarret('agentCarret')" routerLink="/home/agent"><i class="fa fa-user"></i>&nbsp;&nbsp;Travel Agent</button>
+                    <i id="agentCarret" class="home-carret fa fa-sort-down"></i>
+                </div>                
+            </div>
+            <div id="card-outlet" class="col-md-12 mx-auto">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</header>

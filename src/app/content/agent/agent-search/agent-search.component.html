@@ -1,0 +1,124 @@
+<header class="masthead">
+    <div class="container-fluid">   
+        <div class="card home-card mb-5">
+            <div class="row agent-row mt-4">
+                <div class="card search-card">
+                    <div class="card-body">       
+                        <h4>Search Flights</h4><br>        
+                        <!-- Start Main Button Group -->
+                        <div class="btn-group main-btn-group">
+                            <div class="dropdown home-book-btn">
+                                <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i id="departIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;                    
+                                    <span *ngIf="booking.from == ''">From</span>
+                                    <span *ngIf="booking.from != ''">
+                                        <sub class="pull-left">&nbsp;From</sub>{{booking.from}}
+                                    </span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">                        
+                                    <a class="dropdown-item" id="fromDest" name="fromDest" *ngFor="let item of destinations; let i = index;" (click)="assignFrom(item)">{{item}} ({{destAbbreviation[i]}})</a>
+                                </div>
+                            </div>
+                            <div class="dropdown home-book-btn">
+                                <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i id="arriveIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;
+                                    <span *ngIf="booking.to == ''">To</span>
+                                    <span *ngIf="booking.to != ''">
+                                        <sub class="pull-left">&nbsp;To</sub>{{booking.to}}
+                                    </span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">
+                                    <a class="dropdown-item" id="toDest" name="toDest" *ngFor="let item of destinations; let i = index;" (click)="assignTo(item)">{{item}} ({{destAbbreviation[i]}})</a>
+                                </div>
+                            </div>
+                
+                            <!-- Datepicker Start -->
+                            <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                <input #datePicker type="text" id="datePicker" name="datepicker" class="form-control datetimepicker-input" data-target="#datetimepicker">
+                                <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text home-book-btn"><i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Dates</div>
+                                </div>
+                            </div>                
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker').datetimepicker({
+                                        format: 'L'
+                                    });
+                                });
+                            </script>
+                            <!-- Datepicker End -->
+        
+                            <!-- Price Start -->
+                            <button id="price" type="button" class="btn btn-default home-book-btn price-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true">
+                                <i class="fa fa-dollar-sign"></i>
+                                &nbsp;&nbsp;Price Range
+                            </button>
+        
+                            <div id="popover-content-price" class="hide">
+                                <h6>Price</h6>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        Min price
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="minPrice" id="minPrice" placeholder="R" [(ngModel)]="booking.priceMin">
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        Max price
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="maxPrice" id="maxPrice" placeholder="R" [(ngModel)]="booking.priceMax">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary btn-home" type="button" (click)="search()">
+                            <i class="fa fa-search"></i>
+                            &nbsp;&nbsp;Search
+                        </button>
+                    </div> 
+                </div>
+            </div>    
+        
+            <div class="row agent-row mt-5 mb-5">
+                <div class="card search-card">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Flight Number</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Depart</th>
+                                    <th scope="col">Depart Time</th>
+                                    <th scope="col">Arrive</th>
+                                    <th scope="col">Arrive Time</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Price</th>                                                          
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="found">
+                                    <th scope="row">ZA1813</th>
+                                    <td>18 May, Fri</td>
+                                    <td>OR Thambo Intl.</td>
+                                    <td>11:30</td>
+                                    <td>Margate</td>
+                                    <td>13:00</td>
+                                    <td>1H30</td>
+                                    <td>R2179.29</td>                                
+                                </tr>                                                      
+                            </tbody>
+                        </table>  
+                        <div class="alert alert-warning" role="alert" *ngIf="!found && !open">
+                            No flights found!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>        

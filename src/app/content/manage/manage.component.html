@@ -1,0 +1,291 @@
+<header class="masthead">
+    <div class="bg text-white text-center" >
+            <div class="container">
+                <div class="row">          
+                    <div id="card-outlet" class="col-md-12 mx-auto">
+                        <div class="card home-card">
+                            <h4 class="d-flex justify-content-between align-items-center  mt-4 mx-3" href="#req" role="button" aria-expanded="false" aria-controls="req">
+                            <span class="text-muted">{{name}}</span>
+                            <span class="text-muted">Reference: #2454AC</span>
+                            <span class="text-muted text-center">{{cell}}</span>
+                            </h4>
+
+                            <h6 class="text-muted d-flex align-items-start mx-3">{{email}}</h6>
+                            <div class="text-muted d-flex align-items-center mx-3">
+                                <h6 class="mr-auto" *ngIf="seats > 0">Seats to book: {{seats}}</h6>
+                                <h6 class="mr-auto" *ngIf="seats == 0">Selected seats:&nbsp; 
+                                    <span *ngFor="let seat of selectedSeats">{{seat}}&nbsp;</span>
+                                </h6>
+                                <h6>Checked in:&nbsp;{{checkedIn == true ? 'Yes' : 'No'}}</h6>
+                            </div>
+                            <div class="mt-2" id="req">
+                                <hr>
+                            <div class="row  mx-3" id="req">
+                            
+                                <div class="col-md-8 order-md-1">
+                                <h5 class="text-muted mb-1">
+                                    <i class="fas fa-plane " style="transform: rotate(-30deg)"></i>
+                                    <span class="text-muted">Departure flight</span>
+                                    
+                                </h5>
+                                <hr>
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                    <h6 class="text-muted">
+                                        <strong>From</strong> : (ORT) OR Tambo 
+                                    </h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="text-muted">
+                                        <strong>To</strong> : (MGH) Margate 
+                                        </h6>
+                                    </div>
+                                
+                                <div class="col-md-3">
+                                    <h6 class="text-muted">
+                                        <strong>Date</strong> : 18/05/2018
+                                    </h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="text-muted">
+                                        <strong>Time</strong> : 7:30am
+                                    </h6>
+                                    </div>
+                                </div>
+                                <!-- <hr> -->
+                                <!-- <h5 class="text-muted mb-1">
+                                    <i class="fas fa-plane " style="transform: rotate(30deg)"></i>
+                                    <span class="text-muted">Return flight</span>
+                                    
+                                </h5> -->
+                                <!-- <hr> -->
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    <h6 class="text-muted">
+                                        <strong>From</strong> : (MGH) Margate 
+                                    </h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="text-muted">
+                                            <strong>To</strong> : (ORT) OR Tambo 
+                                        </h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="text-muted">
+                                            <strong>Date</strong> : 20/05/2018
+                                        </h6>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h6 class="text-muted">
+                                            <strong>Time</strong> : 1:30pm
+                                        </h6>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                                <h5 class="text-muted mb-1 ">
+                                    <span class="text-muted"><strong>Amount Payed: </strong>R2179.29 <span class="badge badge-success badge-pill "><i class="fas fa-check"></i></span></span>
+                                </h5>
+                                <hr>
+                                <h5 class="text-muted mb-1 mt-2 ">
+                                    <span class="text-muted"> We at CemAir would like to thank you for flying with us. A confirmation email has been sent to you</span>
+                                </h5>
+
+                                <img class="my-3 rounded" *ngIf="checkedIn == true" src="../../../assets/images/barcode.jpg" alt="barcode" height="100px" width="300px">
+                        
+                                </div>
+                                <div class="col-md-4 order-md-2 mb-4 vl">
+                                    <h4 class="d-flex justify-content-between align-items-center" >
+                                    <span class="text-muted">Special Requirements:</span>
+                                </h4>
+                                <hr>
+                                <ul class="list-unstyled text-left mt-2 list-group">
+                                    <li>Wheelchair <span class="badge badge-secondary badge-pill"><i class="fas fa-check"></i></span></li>
+                                    <li>Lounge Access <span class="badge badge-secondary badge-pill"><i class="fas fa-check"></i></span></li>
+                                    <li>Bicycle <span class="badge badge-secondary badge-pill">1</span></li>
+                                </ul>
+                                <hr>
+                                <h4 class="d-flex justify-content-between align-items-center mb-3 mt-3">
+                                    <span class="text-muted">
+                                        <i class="fas fa-exclamation-circle mr-1"></i>Please note the following</span>
+                                    </h4>
+                                    <hr>
+                                    <ul class="list-group mb-3">
+                                    <!--  Please note that not all aircraft are equipped with lavatory facilities Online Check-in available 48 hours before departure and closes strictly 1 hour before departure-->
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule5" role="button" aria-expanded="false"
+                                        aria-controls="rule5" data-toggle="collapse">
+                                        <div>
+                                        <h6 class="my-0">Check-in counters</h6>
+                                        <small class="text-muted collapse" id="rule5">Check-in counters open 90 minutes before the flight and close strictly 45 minutes before the flight</small>
+                                        </div>
+                                        <span class="text-muted">
+                                        <i class="fas fa-angle-down "></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule6" role="button" aria-expanded="false"
+                                        aria-controls="rule6" data-toggle="collapse">
+                                        <div>
+                                        <h6 class="my-0">Flight Baggage Allowance</h6>
+                                        <small class="text-muted collapse" id="rule6">Total allowance of 21 kilograms:
+                                            <ul class="text-left">
+                                            <li>15 kilograms checked luggage</li>
+                                            <li>6 kilos hand luggage</li>
+                                            </ul>
+                                        </small>
+                            
+                                        </div>
+                                        <span class="text-muted">
+                                        <i class="fas fa-angle-down "></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule7" role="button" aria-expanded="false"
+                                        aria-controls="rule7" data-toggle="collapse">
+                                        <div>
+                                        <h6 class="my-0">Online Check-in</h6>
+                                        <small class="text-muted collapse" id="rule7">Online Check-in available 48 hours before departure and closes strictly 1 hour before departure</small>
+                                        </div>
+                                        <span class="text-muted">
+                                        <i class="fas fa-angle-down "></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule8" role="button" aria-expanded="false"
+                                        aria-controls="rule8" data-toggle="collapse">
+                                        <div>
+                                        <h6 class="my-0">Aircraft Facilities</h6>
+                                        <small class="text-muted collapse" id="rule8">Please note that not all aircraft are equipped with lavatory facilities, all flights are non-smoking and passengers
+                                            caught smoking will be prosecuted</small>
+                                        </div>
+                                        <span class="text-muted">
+                                        <i class="fas fa-angle-down "></i>
+                                        </span>
+                                    </li>
+                            
+                            
+                                    </ul>
+                                </div>
+                        
+                            </div>
+                            <div class="card-footer banner" id="req" style="height: 80px;">
+                                <div class="my-2" style="display:inline-block;background-color: transparent;border:none">
+                                    <button class="btn btn-success btn-lg ml-2" id="btnCheckIn" (click)="checkIn()">
+                                        <i class="fas fa-check"></i>&nbsp;&nbsp; Check in
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seatSelection">
+                                        <i class="fas fa-couch"></i>&nbsp;&nbsp; Choose Seat(s)
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editDetails">
+                                        <i class="fas fa-edit"></i>&nbsp;&nbsp; Edit Details
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#cancelBooking" > 
+                                        <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp; Cancel Booking
+                                    </button>
+                                </div>
+                            </div>
+                            </div>
+                        
+                        </div>
+                        <!--Next and back buttons-->
+                        <div class="my-2" style="float:right;display:inline-block;background-color: transparent;border:none">
+                            <button class="btn btn-lg btn-success" routerLink="/">
+                                <i class="fas fa-home"></i>&nbsp;&nbsp; Home
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+          </div>
+    
+        
+</header>
+
+<div class="modal fade" id="seatSelection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="seatSelectionLabel">Select seat to book</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="plane">
+                    <div class="cockpit">
+                        <h3>Select a seat</h3>
+                    </div>
+                    <div class="exit exit--front fuselage">
+            
+                    </div>
+                    <ol class="cabin fuselage">
+                        <li class="row--{{row}}" *ngFor="let row of [1,2,3,4,5,6,7,8,9,10]">
+                            <ol class="seats" type="A">
+                                <li class="seat" *ngFor="let seat of ['A', 'B', 'C', 'D', 'E', 'F']">
+                                    <input type="checkbox" id="{{row}}{{seat}}" (click)="selectSeat(row,seat)">
+                                    <label for="{{row}}{{seat}}">{{row}}{{seat}}</label>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <div class="exit exit--back fuselage">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Are you sure you wish to cancel your booking?</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p>You will be credited with the value of your ticket cost</p>
+                <p>Type CONFIRM below to confirm</p>
+                <input type="text">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" routerLink="/">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Edit your personal details</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+                <div class="modal-body">
+                    <h6>Name</h6>
+                    <input type="text" [(ngModel)]="name">
+                    <h6>Cell Number</h6>
+                    <input type="text" [(ngModel)]="cell">
+                    <h6>Email</h6>
+                    <input type="text" [(ngModel)]="email">
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>

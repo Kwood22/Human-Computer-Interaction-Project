@@ -1,0 +1,17 @@
+.backdrop {
+    background: url('/assets/images/book-background.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-top: -61px;
+}
+
+.book-container {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+}
+
+#card-outlet {
+    margin-top: 1rem !important;    
+}

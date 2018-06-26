@@ -1,0 +1,341 @@
+<div class="card home-card">
+    <h4 class="d-flex justify-content-between align-items-center  mt-4 mx-3" href="#req" role="button" aria-expanded="false" aria-controls="req"
+    data-toggle="collapse">
+    <span class="text-muted">{{bookingInfo.passengers[0].firstName}} {{bookingInfo.passengers[0].lastName}}</span>
+    <span class="text-muted text-center"><strong>Booking Confirmed</strong><i class="fas fa-check ml-2"></i></span>
+    <span class="text-muted text-right">Reference: 2454AC</span>
+    <i class="fas fa-angle-down" style="float:right"></i>
+  </h4>
+  
+  <div class="mt-2" id="req">
+      <hr>
+  <div class="row  mx-3" id="req">
+    
+      <div class="col-md-8 order-md-1">
+        <h5 class="text-muted mb-1">
+            <i class="fas fa-plane " style="transform: rotate(-30deg)"></i>
+            <span class="text-muted">Departure flight</span>
+            
+        </h5>
+        <hr>
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <h6 class="text-muted">
+              <strong>From</strong> : {{bookingInfo.from}}
+            </h6>
+          </div>
+          <div class="col-md-3">
+              <h6 class="text-muted">
+                <strong>To</strong> : {{bookingInfo.to}} 
+              </h6>
+            </div>
+        
+        <div class="col-md-3">
+            <h6 class="text-muted">
+              <strong>Date</strong> : {{bookingInfo.dateDepart}}
+            </h6>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-muted">
+              <strong>Time</strong> : {{bookingInfo.departFlight.departTime}}
+            </h6>
+          </div>
+      </div>
+      <hr *ngIf="bookingInfo.oneWay ==0">
+      <h5 class="text-muted mb-1" *ngIf="bookingInfo.oneWay ==0">
+          <i class="fas fa-plane " style="transform: rotate(30deg)"></i>
+          <span class="text-muted">Return flight</span>
+          
+      </h5>
+      <hr *ngIf="bookingInfo.oneWay ==0">
+      <div class="row" *ngIf="bookingInfo.oneWay ==0">
+          <div class="col-md-3">
+            <h6 class="text-muted">
+                <strong>From</strong> : {{bookingInfo.to}}
+            </h6>
+          </div>
+          <div class="col-md-3">
+              <h6 class="text-muted">
+                  <strong>To</strong> : {{bookingInfo.from}} 
+              </h6>
+            </div>
+        <div class="col-md-3">
+            <h6 class="text-muted">
+                <strong>Date</strong> : {{bookingInfo.dateReturn}}
+            </h6>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-muted">
+                <strong>Time</strong> : {{bookingInfo.returnFlight.departTime}}
+            </h6>
+          </div>
+      </div>
+      <hr class="mt-4">
+      <h5 class="text-muted mb-1 ">
+        <span class="text-muted"><strong>Total Amount Payed:</strong>
+          <br><small class="ml-4 pl-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount: R{{amountExc}}</small>
+          <br><small class="ml-4 pl-4">VAT (15%): R{{vat}}</small>
+          <br><span class="ml-4 pl-4" style="border-top: 1px solid grey"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bookingInfo.totalCost}}</strong><span class="badge badge-success badge-pill ml-2"><i class="fas fa-check"></i></span></span>
+        </span>
+      </h5>
+      <hr>
+      <h5 class="text-muted text-center mb-1 mt-2 pt-1 pb-1 ">
+          <span class="text-muted text-center"><strong>We at CemAir would like to thank you for flying with us.</strong> </span><br>
+          <span class="text-muted text-center"> A booking confirmation email has been sent to you.</span>
+      </h5>
+
+      </div>
+      <div class="col-md-4 order-md-2 mb-4 vl">
+          <h4 class="d-flex justify-content-between align-items-center" >
+          <span class="text-muted">Special Requirements:</span>
+        </h4>
+        <hr>
+        <ul class="list-unstyled text-left mt-2 list-group"> 
+          <div *ngFor="let item of items">
+              <li *ngIf="item.num >0"> {{item.name}} <span class="badge badge-secondary badge-pill">{{item.num}}</span></li>
+          </div>
+          
+          </ul>
+        <hr>
+        <h4 class="d-flex justify-content-between align-items-center mb-3 mt-3">
+            <span class="text-muted">
+              <i class="fas fa-exclamation-circle mr-1"></i>Please note the following</span>
+          </h4>
+          <hr>
+          <ul class="list-group mb-3">
+            <!--  Please note that not all aircraft are equipped with lavatory facilities Online Check-in available 48 hours before departure and closes strictly 1 hour before departure-->
+            <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule5" role="button" aria-expanded="false"
+              aria-controls="rule5" data-toggle="collapse">
+              <div>
+                <h6 class="my-0">Check-in counters</h6>
+                <small class="text-muted collapse" id="rule5">Check-in counters open 90 minutes before the flight and close strictly 45 minutes before the flight</small>
+              </div>
+              <span class="text-muted">
+                <i class="fas fa-angle-down "></i>
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule6" role="button" aria-expanded="false"
+              aria-controls="rule6" data-toggle="collapse">
+              <div>
+                <h6 class="my-0">Flight Baggage Allowance</h6>
+                <small class="text-muted collapse" id="rule6">Total allowance of 21 kilograms:
+                  <ul class="text-left">
+                    <li>15 kilograms checked luggage</li>
+                    <li>6 kilos hand luggage</li>
+                  </ul>
+                </small>
+  
+              </div>
+              <span class="text-muted">
+                <i class="fas fa-angle-down "></i>
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule7" role="button" aria-expanded="false"
+              aria-controls="rule7" data-toggle="collapse">
+              <div>
+                <h6 class="my-0">Online Check-in</h6>
+                <small class="text-muted collapse" id="rule7">Online Check-in available 48 hours before departure and closes strictly 1 hour before departure</small>
+              </div>
+              <span class="text-muted">
+                <i class="fas fa-angle-down "></i>
+              </span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule8" role="button" aria-expanded="false"
+              aria-controls="rule8" data-toggle="collapse">
+              <div>
+                <h6 class="my-0">Aircraft Facilities</h6>
+                <small class="text-muted collapse" id="rule8">Please note that not all aircraft are equipped with lavatory facilities, all flights are non-smoking and passengers
+                  caught smoking will be prosecuted</small>
+              </div>
+              <span class="text-muted">
+                <i class="fas fa-angle-down "></i>
+              </span>
+            </li>
+  
+  
+          </ul>
+      </div>
+
+  </div>
+  <div class="card-footer banner" id="req" style="height: 80px;">
+  </div>
+  </div>
+
+</div>
+<!--second person-->
+<div *ngIf="numPassengers>1">
+<div  *ngFor="let passenger of passengers; let i=index">
+<div class="card home-card mt-3" *ngIf="i>=1">  
+  <h4 class="d-flex justify-content-between align-items-center  mt-4 mx-3" #elem [attr.href]="'#req'+i" role="button" aria-expanded="false" 
+  data-toggle="collapse">
+  <span class="text-muted">{{passenger.firstName}} {{passenger.lastName}}</span>
+  <span class="text-muted text-center"><strong>Booking Confirmed</strong><i class="fas fa-check ml-2"></i></span>
+  <span class="text-muted text-right">Reference: 245{{i+4}}AC</span>
+  <i class="fas fa-angle-down" style="float:right"></i>
+</h4>
+
+<div class="mt-2 collapse" #elem [attr.id]="'req'+i">
+    <hr>
+<div class="row  mx-3" #elem [attr.id]="'req'+i">
+  
+    <div class="col-md-8 order-md-1">
+      <h5 class="text-muted mb-1">
+          <i class="fas fa-plane " style="transform: rotate(-30deg)"></i>
+          <span class="text-muted">Departure flight</span>
+          
+      </h5>
+      <hr>
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <h6 class="text-muted">
+            <strong>From</strong> : {{bookingInfo.from}}
+          </h6>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-muted">
+              <strong>To</strong> : {{bookingInfo.to}}
+            </h6>
+          </div>
+      
+      <div class="col-md-3">
+          <h6 class="text-muted">
+            <strong>Date</strong> : {{bookingInfo.dateDepart}}
+          </h6>
+      </div>
+      <div class="col-md-3">
+          <h6 class="text-muted">
+            <strong>Time</strong> : {{bookingInfo.departFlight.departTime}}
+          </h6>
+        </div>
+    </div>
+    <hr *ngIf="bookingInfo.oneWay ==0"> 
+
+    <h5 class="text-muted mb-1" *ngIf="bookingInfo.oneWay ==0">
+        <i class="fas fa-plane " style="transform: rotate(30deg)"></i>
+        <span class="text-muted">Return flight</span>
+        
+    </h5>
+    <hr *ngIf="bookingInfo.oneWay ==0">
+    <div class="row"*ngIf="bookingInfo.oneWay ==0" >
+        <div class="col-md-3">
+          <h6 class="text-muted">
+              <strong>From</strong> : {{bookingInfo.to}}
+          </h6>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-muted">
+                <strong>To</strong> : {{bookingInfo.from}} 
+            </h6>
+          </div>
+      <div class="col-md-3">
+          <h6 class="text-muted">
+              <strong>Date</strong> : {{bookingInfo.dateReturn}}
+          </h6>
+      </div>
+      <div class="col-md-3">
+          <h6 class="text-muted">
+              <strong>Time</strong> : {{bookingInfo.returnFlight.departTime}}
+          </h6>
+        </div>
+    </div>
+    <hr class="mt-4">
+    <h5 class="text-muted mb-1 ">
+        <span class="text-muted"><strong>Total Amount Payed:</strong>
+          <br><small class="ml-4 pl-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount: R{{amountExc}}</small>
+          <br><small class="ml-4 pl-4">VAT (15%): R{{vat}}</small>
+          <br><span class="ml-4 pl-4" style="border-top: 1px solid grey"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bookingInfo.totalCost}}</strong><span class="badge badge-success badge-pill ml-2"><i class="fas fa-check"></i></span></span>
+        </span>
+    </h5>
+    <hr>
+    <h5 class="text-muted text-center mb-1 mt-2 pt-1 pb-1 ">
+        <span class="text-muted text-center"><strong>We at CemAir would like to thank you for flying with us.</strong> </span><br>
+        <span class="text-muted text-center"> A booking confirmation email has been sent to you.</span>
+    </h5>
+
+    </div>
+    <div class="col-md-4 order-md-2 mb-4 vl">
+        <h4 class="d-flex justify-content-between align-items-center" >
+        <span class="text-muted">Special Requirements:</span>
+      </h4>
+      <hr>
+      <ul class="list-unstyled text-left mt-2 list-group">
+          <div *ngFor="let item of items">
+              <li *ngIf="item.num >0"> {{item.name}} <span class="badge badge-secondary badge-pill">{{item.num}}</span></li>
+          </div>
+      </ul>
+      <hr>
+      <h4 class="d-flex justify-content-between align-items-center mb-3 mt-3">
+          <span class="text-muted">
+            <i class="fas fa-exclamation-circle mr-1"></i>Please note the following</span>
+        </h4>
+        <hr>
+        <ul class="list-group mb-3">
+          <!--  Please note that not all aircraft are equipped with lavatory facilities Online Check-in available 48 hours before departure and closes strictly 1 hour before departure-->
+          <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule51" role="button" aria-expanded="false"
+            aria-controls="rule51" data-toggle="collapse">
+            <div>
+              <h6 class="my-0">Check-in counters</h6>
+              <small class="text-muted collapse" id="rule51">Check-in counters open 90 minutes before the flight and close strictly 45 minutes before the flight</small>
+            </div>
+            <span class="text-muted">
+              <i class="fas fa-angle-down "></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule61" role="button" aria-expanded="false"
+            aria-controls="rule61" data-toggle="collapse">
+            <div>
+              <h6 class="my-0">Flight Baggage Allowance</h6>
+              <small class="text-muted collapse" id="rule61">Total allowance of 21 kilograms:
+                <ul class="text-left">
+                  <li>15 kilograms checked luggage</li>
+                  <li>6 kilos hand luggage</li>
+                </ul>
+              </small>
+
+            </div>
+            <span class="text-muted">
+              <i class="fas fa-angle-down "></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule71" role="button" aria-expanded="false"
+            aria-controls="rule71" data-toggle="collapse">
+            <div>
+              <h6 class="my-0">Online Check-in</h6>
+              <small class="text-muted collapse" id="rule71">Online Check-in available 48 hours before departure and closes strictly 1 hour before departure</small>
+            </div>
+            <span class="text-muted">
+              <i class="fas fa-angle-down "></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed" href="#rule81" role="button" aria-expanded="false"
+            aria-controls="rule81" data-toggle="collapse">
+            <div>
+              <h6 class="my-0">Aircraft Facilities</h6>
+              <small class="text-muted collapse" id="rule81">Please note that not all aircraft are equipped with lavatory facilities, all flights are non-smoking and passengers
+                caught smoking will be prosecuted</small>
+            </div>
+            <span class="text-muted">
+              <i class="fas fa-angle-down "></i>
+            </span>
+          </li>
+
+
+        </ul>
+    </div>
+
+</div>
+<div class="card-footer banner" id="req" style="height: 80px;">
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!--Next and back buttons-->
+<div class="card my-2" style="float: right;display:inline-block;background-color: transparent;border:none">
+    <button class="btn btn-lg btn-success " routerLink="/">
+      <i class="fas fa-home"></i>&nbsp;&nbsp; Home
+    </button>
+</div>

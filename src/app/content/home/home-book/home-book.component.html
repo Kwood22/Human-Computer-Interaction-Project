@@ -1,0 +1,173 @@
+<div class="card home-card">
+    <div class="card-body">
+        <div class="text-left">
+            <label class="radio-inline">
+                <input type="radio" name="optradio" [value]="1" [(ngModel)]="bookingInfo.oneWay">&nbsp;One Way
+            </label>&nbsp;&nbsp;
+            <label class="radio-inline" (click)="roundTripClick();">
+                <input #roundTrip type="radio" name="optradio" [value]="0" [(ngModel)]="bookingInfo.oneWay">&nbsp;Round Trip
+            </label>
+        </div>            
+        <!-- Start Main Button Group -->
+        <div class="btn-group main-btn-group">
+            <div class="dropdown home-book-btn">
+                <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i id="departIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;                    
+                    <span *ngIf="bookingInfo.from == ''">
+                        From
+                    </span>
+                    <span *ngIf="bookingInfo.from != ''">
+                        <sub class="pull-left">&nbsp;From</sub>{{bookingInfo.from}}
+                    </span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">                        
+                    <a class="dropdown-item" id="fromDest" name="fromDest" *ngFor="let item of destinations; let i = index;" (click)="assignFrom(item, i)">{{item}} ({{destAbbreviation[i]}})</a>
+                </div>
+            </div>
+            <div class="dropdown home-book-btn">
+                <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i id="arriveIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;
+                    <span *ngIf="bookingInfo.to == ''">To</span>
+                    <span *ngIf="bookingInfo.to != ''">
+                        <sub class="pull-left">&nbsp;To</sub>{{bookingInfo.to}}
+                    </span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">
+                    <a class="dropdown-item" id="toDest" name="toDest" *ngFor="let item of destinations; let i = index;" (click)="assignTo(item, i)">{{item}} ({{destAbbreviation[i]}})</a>
+                </div>
+            </div>
+
+            <!-- Datepicker Start -->
+            <!-- One Way Trip -->
+            <button id="dateButton" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="togglePopover(); saveDepartDate();">
+                <div class="date-text">                    
+                    <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;                    
+                    <div *ngIf="bookingInfo.oneWay == 1">Date</div>
+                    <div *ngIf="bookingInfo.oneWay == 0">Depart</div>
+                </div>
+            </button>
+
+            <div id="popover-content-dateButton" class="hide">
+                <input #datePicker id="dateInput" name="date" class="form-control" type="date">
+            </div>
+
+            <!-- Round Trip Date -->
+            <div *ngIf="bookingInfo.oneWay == 0">
+                <button id="dateButton2" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="togglePopover()">
+                    <div class="date-text">
+                        <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Return
+                    </div>
+                </button>
+
+                <div id="popover-content-dateButton2" class="hide">
+                    <input #datePicker2 id="dateInput2" name="date" class="form-control" type="date" (click)="saveReturnDate()">
+                </div>                
+            </div>           
+            <!-- Datepicker End -->
+
+            <!-- Passengers Start -->
+            <button id="passengers" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="passengerInput()">
+                <i class="fa fa-user"></i>&nbsp;&nbsp;Passengers
+            </button>
+
+            <div id="popover-content-passengers" class="hide">
+                <h6>Passengers</h6>
+                <br>
+                <div class="row">
+                    <div class="col-sm-5">
+                        Adult (18+)
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </span>
+                            <input #adult id="adult" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="9">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[1]">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-sm-5">
+                        Youth (12-17)
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </span>
+                            <input #youth type="text" name="quant[2]" class="form-control input-number" value="0" min="0" max="9">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[2]">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-sm-5">
+                        Child (2-11)
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </span>
+                            <input #children type="text" name="quant[3]" class="form-control input-number" value="0" min="0" max="9">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[3]">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-sm-5">
+                        Infant (under 2)
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[4]">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </span>
+                            <input #infant type="text" name="quant[4]" class="form-control input-number" value="0" min="0" max="9">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[4]">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Passengers End -->     
+            
+            <div class="text-right continue">
+                <button class="btn btn-lg btn-success" (click)="submit()">
+                    <div *ngIf="bookingInfo.oneWay == 1">Next&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></div>
+                    <div *ngIf="bookingInfo.oneWay == 0"><i class="fa fa-chevron-right"></i></div>
+                    
+                </button>
+            </div>
+        </div>            
+        <!-- End Main Button Group -->
+                
+        <div *ngIf="error" class="text-center" style="color:red">
+            Please complete all information to proceed
+        </div>
+    </div>
+</div>

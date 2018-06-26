@@ -1,0 +1,249 @@
+<header class="masthead">
+    <div class="container-fluid">
+        <div class="card home-card">
+            <div class="card-body">
+                <div class="row agent-row">
+                    <h4>Flight Booking</h4><br>
+                </div>                
+                <div class="row agent-row mt-4">
+                    <div class="pull-left inline">
+                        <button class="btn btn-primary btn-home" (click)="clickSearch()">
+                            <i class="fa fa-search"></i>
+                            &nbsp;&nbsp;Search Flights
+                        </button>
+                    </div>
+                </div>
+                <div class="row agent-row agent-book-row">                       
+                    <div class="text-left">
+                        <label class="radio-inline">
+                            <input type="radio" name="trip" id="trip" value="1" [(ngModel)]="booking.oneWay">
+                            &nbsp;One Way
+                        </label>
+                        &nbsp;&nbsp;
+                        <label class="radio-inline" (click)="hideDatepickerInput(); roundTripClick();">
+                            <input #roundTrip type="radio" name="trip" id="trip" value="0" [(ngModel)]="booking.oneWay">
+                            &nbsp;Round Trip
+                        </label>
+                    </div>         
+                    <!-- Start Main Button Group -->
+                    <div class="btn-group main-btn-group">
+                        <div class="dropdown home-book-btn">
+                            <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i id="departIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;                    
+                                <span *ngIf="booking.from == ''">From</span>
+                                <span *ngIf="booking.from != ''">
+                                    <sub class="pull-left">&nbsp;From</sub>{{booking.from}}
+                                </span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">                        
+                                <a class="dropdown-item" id="fromDest" name="fromDest" *ngFor="let item of destinations; let j = index;" (click)="assignFrom(item)">{{item}} ({{destAbbreviation[j]}})</a>
+                            </div>
+                        </div>
+                        <div class="dropdown home-book-btn">
+                            <button class="btn btn-default btn-lg dropdown-toggle dest-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i id="arriveIcon" class="fa fa-plane pull-left"></i>&nbsp;&nbsp;
+                                <span *ngIf="booking.to == ''">To</span>
+                                <span *ngIf="booking.to != ''">
+                                    <sub class="pull-left">&nbsp;To</sub>{{booking.to}}
+                                </span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="#dropdownMenuButton">
+                                <a class="dropdown-item" id="toDest" name="toDest" *ngFor="let item of destinations; let j = index;" (click)="assignTo(item)">{{item}} ({{destAbbreviation[j]}})</a>
+                            </div>
+                        </div>
+
+                        <!-- Datepicker Start -->
+                        <button id="dateButton" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="togglePopover();">
+                            <div class="date-text">                                
+                                <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;                    
+                                <div *ngIf="booking.oneWay == 1">Date</div>
+                                <div *ngIf="booking.oneWay == 0">Depart</div>
+                            </div>
+                        </button>
+            
+                        <div id="popover-content-dateButton" class="hide">
+                            <input #datePicker id="dateInput" name="date" class="form-control" type="date">
+                        </div>
+                        <!-- <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                            <input #datePicker type="text" id="datePicker" name="datepicker" class="form-control datetimepicker-input" data-target="#datetimepicker">
+                            <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                <div class="input-group-text home-book-btn"><i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Dates</div>
+                            </div>
+                        </div>
+                        <div class="input-group date" [id]="'datetimepicker'+i" attr.data-target-input="nearest" (click)="toggleDatePicker(i)">
+                            <input #datePicker type="text" [id]="'datePicker'+i" [name]="'datepicker'+i" class="form-control datetimepicker-input" attr.data-target="'#datetimepicker'+i">
+                            <div class="input-group-append" attr.data-target="'#datetimepicker'+i" attr.data-toggle="'datetimepicker'+i">
+                                <div class="input-group-text home-book-btn"><i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Dates</div>
+                            </div>
+                        </div> -->
+                        <!-- <script type="text/javascript">                                
+                            $(function () {                             
+                                $('#datetimepicker').datetimepicker({
+                                    format: 'dd/mm/yyy'                                
+                                });                            
+                            });                        
+                        </script> -->
+
+                        <div *ngIf="booking.oneWay == 0">
+                            <button id="dateButton2" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="togglePopover()">
+                                <div class="date-text">
+                                    <i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Return
+                                </div>
+                            </button>
+            
+                            <div id="popover-content-dateButton2" class="hide">
+                                <input #datePicker2 id="dateInput2" name="date" class="form-control" type="date">
+                            </div>              
+                            <!-- <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                <input #datePicker2 type="text" id="datePicker2" name="datepicker" class="form-control datetimepicker-input" data-target="#datetimepicker2">
+                                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker2">
+                                    <div class="input-group-text home-book-btn"><i class="fa fa-calendar-alt"></i>&nbsp;&nbsp;Return</div>
+                                </div>
+                            </div>                
+                            <script type="text/javascript">
+                                $(function () {
+                                    $('#datetimepicker2').datetimepicker({
+                                        format: 'L'
+                                    });                    
+                                });
+                            </script> -->
+                        </div>           
+                        <!-- Datepicker End -->
+
+                        <!-- Passengers Start -->
+                        <button id="passengers" type="button" class="btn btn-default home-book-btn passengers-btn" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" (click)="passengerInput()">
+                            <i class="fa fa-user"></i>&nbsp;&nbsp;Passengers
+                        </button>
+
+                        <div id="popover-content-passengers" class="hide">
+                            <h6>Passengers</h6>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    Adult (18+)
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="quant1" type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" attr.data-field="quant1">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input id="adult" type="text" name="quant1" class="form-control input-number" value="1" min="1" max="9">
+                                        <span class="input-group-btn">
+                                            <button id="quant1" type="button" class="btn btn-default btn-sm btn-number" data-type="plus" attr.data-field="quant1">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    Youth (12-17)
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="quant2" type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant2">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input id="youth" type="text" name="quant2" class="form-control input-number" value="0" min="0" max="9">
+                                        <span class="input-group-btn">
+                                            <button id="quant2" type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant2">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    Child (2-11)
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="quant3" type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant3">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input id="children" type="text" name="quant3" class="form-control input-number" value="0" min="0" max="9">
+                                        <span class="input-group-btn">
+                                            <button id="quant3" type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant3">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    Infant (under 2)
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="quant4" type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant4">
+                                                <span class="fa fa-minus"></span>
+                                            </button>
+                                        </span>
+                                        <input #infant id="infant" type="text" name="quant4" class="form-control input-number" value="0" min="0" max="9">
+                                        <span class="input-group-btn">
+                                            <button id="quant4" type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant4">
+                                                <span class="fa fa-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Passengers End -->                             
+                    </div>            
+                    <!-- End Main Button Group -->                        
+                </div>
+                <!-- End Row -->
+
+                <!-- Start Row -->
+                <!-- <div class="row agent-row"> -->
+                    <!-- Start Outline Card -->
+                    <!-- <div class="card outline-card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary m-3" (click)="addFlight()">
+                                    <i class="fa fa-plus"></i>
+                                    &nbsp;&nbsp;Add Flight
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- End Outline Card -->
+                <!-- </div> -->
+                <!-- End Row -->
+
+                <!-- Start Row -->
+                <div class="row agent-row agent-buttons">
+                    <div class="w-100">
+                        <!-- <div class="pull-left inline">
+                            <button class="btn btn-primary" (click)="clickSearch()">
+                                <i class="fa fa-search"></i>
+                                &nbsp;&nbsp;Search Flights
+                            </button>
+                        </div> -->
+                        <div class="pull-left inline">
+                            <button class="btn btn-success" (click)="submit()">
+                                Continue&nbsp;&nbsp;
+                                <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Card Body -->
+        </div>
+        <!-- End Card -->                
+    </div>
+    <!-- End Container -->
+</header>

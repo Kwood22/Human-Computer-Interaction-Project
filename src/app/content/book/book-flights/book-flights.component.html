@@ -1,0 +1,95 @@
+<div class="card home-card">
+  <div class="card-header">
+    <h4>
+      <span class="fas fa-plane mx-3"></span>Departure Flights on {{dateDepart}}</h4>
+  </div>
+  <div class="card-body">
+    <!--Flight Start -->
+    <div class="card container my-1 " *ngFor="let flight of flightsDepart; let i = index" [id]="'flightContainerDepart'+i" (click)="handleDepart(i)">
+      <div class="row">
+        <div class="col-sm-3 card-body text-center">
+          <h6>{{flight.from}}</h6>
+          <sub>{{flight.departTime}}</sub>
+        </div>
+        <div class="col-sm-1 card-body text-center">
+          <img src="../../../assets/images/plane-icon.png" width="64" height="64">
+        </div>
+        <div class="col-sm-3 card-body text-center">
+          <h6>{{flight.to}}</h6>
+          <sub>{{flight.arriveTime}}</sub>
+        </div>
+        <div class="col-sm-2 card-body text-center">
+          <h6>Price</h6>
+          <sub>
+            <h6>
+              <strong>R{{flight.price}}</strong>
+            </h6>
+          </sub>
+        </div>
+        <div class="col-sm-3 card-body">
+          <h6> Select Flight</h6>
+          <label class="container">
+            <input type="radio" name="radioDepart" unchecked [id]="'radioDepart'+i">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <!--Flight End -->
+
+  </div>
+</div>
+<div class="card home-card my-3" *ngIf = "bookingInfo.oneWay == 0">
+  <div class="card-header">
+    <h4>
+      <span class="fas fa-plane mx-3" id="returnIcon"></span>Return Flights on {{dateReturn}} </h4>
+  </div>
+  <div class="card-body">
+    <!--Flight Start -->
+    <div class="card container my-1 " *ngFor="let flight of flightsReturn; let i = index" [id]="'flightContainer'+i" (click)="handle(i)">
+      <div class="row">
+        <div class="col-sm-3 card-body text-center">
+          <h6>{{flight.from}}</h6>
+          <sub>{{flight.departTime}}</sub>
+        </div>
+        <div class="col-sm-1 card-body text-center">
+          <img src="../../../assets/images/plane-icon.png" width="64" height="64">
+        </div>
+        <div class="col-sm-3 card-body text-center">
+          <h6>{{flight.to}}</h6>
+          <sub>{{flight.arriveTime}}</sub>
+        </div>
+        <div class="col-sm-2 card-body text-center">
+          <h6>Price</h6>
+          <sub>
+            <h6>
+              <strong>R{{flight.price}}</strong>
+            </h6>
+          </sub>
+        </div>
+        <div class="col-sm-3 card-body">
+          <h6> Select Flight</h6>
+
+          <label class="container  ">
+            <input type="radio" name="radioReturn" unchecked [id]="'radioReturn'+i">
+            <span class="checkmark"></span>
+          </label>
+
+
+        </div>
+      </div>
+    </div>
+    <!--Flight End -->
+  </div>
+</div>
+<!--Next and back buttons-->
+<div class="card my-2" style="float: right;display:inline-block;background-color: transparent;border:none">
+    <button class="btn btn-lg btn-secondary mx-2" routerLink="/home" >
+        <i class="fa fa-chevron-left"></i>&nbsp;&nbsp;
+        Back       
+      </button>
+  <button class="btn btn-lg btn-success" (click)="saveFlights()"  routerLink="/book/passenger/details">
+    Next&nbsp;&nbsp;
+    <i class="fa fa-chevron-right"></i>
+  </button>
+</div>

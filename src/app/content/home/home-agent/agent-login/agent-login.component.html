@@ -1,0 +1,20 @@
+<div class="card home-card">
+    <div class="card-body">
+        <div *ngIf="isInvalid" style="color:red; text-align:center;">
+            Code and/or Password is incorrect.
+        </div>
+        <form class="form-signin">                    
+            <div class="form-label-group">
+                <input type="text" id="inputCode" class="form-control" placeholder="Agent Code" name="code" [(ngModel)]="userData.code" required autofocus>
+                <label for="inputCode">Agent Code</label>
+            </div>
+        
+            <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="userData.password" required>
+                <label for="inputPassword">Password</label>
+            </div>
+        
+            <button class="btn btn-primary btn-home w-50" (click)="submit()">Submit</button>    
+        </form>    
+    </div>
+</div>

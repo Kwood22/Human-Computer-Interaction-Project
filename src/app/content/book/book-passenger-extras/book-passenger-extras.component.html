@@ -1,0 +1,358 @@
+<div class="card home-card ">
+  <div class="row my-4 mx-3">
+    <!--cart-->
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0">{{bookingInfo.from}} <span class="badge badge-secondary badge-pill pl-2 ml-3 " ><i class="fas fa-ticket-alt mr-1"></i>{{numPassengers}}</span></h6>
+            <small class="text-muted">{{bookingInfo.to}} </small><br>
+            <small class="text-muted">{{bookingInfo.dateDepart}}</small><br>
+          </div>
+          <span class="text-muted">R{{bookingInfo.departFlight.price}}<br><small>(Inc 15% VAT)</small></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngIf="bookingInfo.oneWay == 0">
+          <div>
+            <h6 class="my-0">{{bookingInfo.to}} <span class="badge badge-secondary badge-pill  pl-2 ml-3 " ><i class="fas fa-ticket-alt mr-1"></i>{{numPassengers}}</span></h6>
+            <small class="text-muted">{{bookingInfo.from}}</small><br>
+            <small class="text-muted">{{bookingInfo.dateReturn}}</small><br>
+          </div>
+          <span class="text-muted">R{{bookingInfo.returnFlight.price}}<br><small>(Inc 15% VAT)</small></span>
+        </li>
+        <!--make ng template to be put here-->
+        <div *ngFor="let item of items">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngIf="item.num>0">
+            <div>
+              <h6 class="my-0">{{item.name}} <span class="badge badge-secondary badge-pill pl-2 ml-3 " >{{item.num}}</span></h6>
+            </div>
+            <span class="text-muted">R{{item.cost}}</span>
+          </li>
+        </div>
+       
+        
+
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total </span>
+          <strong>R{{totalCost}}</strong>
+        </li>
+      </ul>
+
+    </div>
+    <!--cart end-->
+    <div class="container col-md-8 order-md-1">
+      <h4 class="d-flex justify-content-between align-items-center mb-3" href="#req" role="button" aria-expanded="false" aria-controls="req"
+        data-toggle="collapse">
+        <span class="text-muted">Special Requirements</span>
+        <i class="fas fa-angle-down" style="float:right"></i>
+      </h4>
+      <div class="card-deck mb-3 text-center " id="req">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Wheelchair Assistance</h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">R80
+              <small class="text-muted">/ pax</small>
+            </h3>
+            <small class="text-muted">Wheelchair to and from Aircraft and assistance up/down the stairs. Passengers with medical issues will also be
+              assisted.
+            </small>
+            <div class="card-link mt-3">
+              <div class="col-sm-12 align-content-center">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" (click)="saveAddOns(0,-1)" >
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </span>
+                  <input #wheel id="Wheelchair" type="text" name="quant[1]" class="form-control input-number" value="0" min="0" max="9" >
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[1]" (click)="saveAddOns(0,1)">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Flying Pets</h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">Free
+            </h3>
+            <small class="text-muted">
+              Cemair has robust standards in place around the transportation of animals to ensure the comfort and safety of pets at each
+              stage of their journey
+            </small>
+            <br>
+            <div class="card-link my-3">
+              <div class="col-sm-12 align-content-center">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[2]" (click)="saveAddOns(1,-1)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </span>
+                  <input #pet id="pet" type="text" name="quant[2]" class="form-control input-number" value="0" min="0" max="9">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[2]" (click)="saveAddOns(1,1)">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Assisted Passengers</h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">Free</h3>
+            <ul class="list-unstyled mt-1 mb-3">
+              <li>
+                <small class="text-muted">Minors between the ages of 6 and 12 years.</small>
+              </li>
+              <li>
+                <small class="text-muted">Pregnant women up until a maximum of 36 months are accepted. is required.</small>
+              </li>
+            </ul>
+            <div class="card-link  ">
+              <div class="col-sm-12 align-content-center">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[3]" (click)="saveAddOns(2,-1)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </span>
+                  <input #assist id="assist" type="text" name="quant[3]" class="form-control input-number" value="0" min="0" max="9">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[3]" (click)="saveAddOns(2,1)">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <!--Additional baggage-->
+      <h4 class="d-flex justify-content-between align-items-center mb-3" href="#opts" role="button" aria-expanded="false" aria-controls="opts"
+        data-toggle="collapse">
+        <span class="text-muted">Additional Options</span>
+        <i class="fas fa-angle-down" style="float: right;"></i>
+      </h4>
+      <div class="card-deck mb-3 text-center collapse" id="opts">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Additional Baggage</h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">R25
+              <small class="text-muted">/ Kg</small>
+            </h3>
+            <small class="text-muted">Each flight has 21Kg of checked luggage for free. Excess baggage is charged ar R25.00 per kilogram
+            </small>
+            <div class="card-link mt-3 ">
+              <div class="col-sm-12 align-content-center">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[4]" (click)="saveAddOns(3,-1)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </span>
+                  <input #baggage id="baggage" type="text" name="quant[4]" class="form-control input-number" value="0" min="0" max="9">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[4]" (click)="saveAddOns(3,1)">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Lounge Access</h4>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title pricing-card-title">R201
+              <small class="text-muted">/ pax</small>
+            </h3>
+            <small class="text-muted">
+              Access to Bidvest Premier Lounge for up to 3 hours before departure of your flight.
+            </small>
+            <div class="mt-4 pt-3 ">
+              <div class="col-sm-12 align-content-center">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[5]" (click)="saveAddOns(5,-1)">
+                      <span class="fa fa-minus"></span>
+                    </button>
+                  </span>
+                  <input #lounge id="lounge" type="text" name="quant[5]" class="form-control input-number" value="0" min="0" max="9">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[5]" (click)="saveAddOns(5,+1)">
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+      <!--Sport-->
+      <hr>
+      <h4 class="d-flex justify-content-between align-items-center mb-3" href="#sport" role="button" aria-expanded="false" aria-controls="sport"
+        data-toggle="collapse">
+        <span class="text-muted">Sport Equipment</span>
+        <i class="fas fa-angle-down" style="float: right;"></i>
+      </h4>
+      <div class="card-deck mb-3 text-center collapse" id="sport">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal mb-4 pb-1">Golf Bag</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title pricing-card-title">R252
+              <small class="text-muted">/ bag</small>
+            </h5>
+            <div class="card-link mt-2">
+
+              <div class="input-group my-2">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[6]" (click)="saveAddOns(4,-1)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </span>
+                <input #golf id="golf" type="text" name="quant[6]" class="form-control input-number" value="0" min="0" max="9">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[6]" (click)="saveAddOns(4,1)">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Surf Boards</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title pricing-card-title">R252
+              <small class="text-muted">/ Board</small>
+            </h5>
+            <div class="mt-1 ">
+
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[7]" (click)="saveAddOns(8,-1)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </span>
+                <input #surf id="surf" type="text" name="quant[7]" class="form-control input-number" value="0" min="0" max="9">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[7]" (click)="saveAddOns(8,1)">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal mb-4 pb-1">Bicycle</h4>
+          </div>
+          <div class="card-body ">
+            <h5 class="card-title pricing-card-title">R252
+              <small class="text-muted">/ Bicycle</small>
+            </h5>
+            <div class="mt-2">
+
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[8]" (click)="saveAddOns(7,-1)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </span>
+                <input #bike id="bike" type="text" name="quant[8]" class="form-control input-number" value="0" min="0" max="9">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[8]" (click)="saveAddOns(7,+1)">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </span>
+
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Fishing Rods</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title pricing-card-title">R252
+              <small class="text-muted">/ item</small>
+            </h5>
+            <div class="card-link mt-1">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" disabled="disabled" data-type="minus" data-field="quant[9]" (click)="saveAddOns(6,-1)">
+                    <span class="fa fa-minus"></span>
+                  </button>
+                </span>
+                <input #fish id="fish" type="text" name="quant[9]" class="form-control input-number" value="0" min="0" max="9">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-sm btn-number" data-type="plus" data-field="quant[9]" (click)="saveAddOns(6,1)">
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <hr>
+
+
+  </div>
+</div>
+<!--Next and back buttons-->
+<div class="card my-2" style="float: right;display:inline-block;background-color: transparent;border:none">
+    <button class="btn btn-lg btn-secondary mx-2" routerLink="/book/passenger/details">
+      <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Back
+    </button>
+    <button class="btn btn-lg btn-success" (click)="saveExtras()" routerLink="/book/payment">
+      Next&nbsp;&nbsp;
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </div>

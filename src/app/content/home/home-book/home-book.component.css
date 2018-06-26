@@ -1,0 +1,58 @@
+.main-btn-group {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.home-book-btn {    
+    margin-right: 1.2rem;
+    border-radius: 4px !important;        
+}
+
+.dest-btn {
+    width: 300px;
+}
+
+.dest-btn::after {
+    position: absolute;
+    left: 88%;
+    top: 45%;
+}
+
+#departIcon {
+    transform: rotate(-20deg);    
+}
+
+#arriveIcon {
+    transform: rotate(20deg);    
+}
+
+.hide {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+.popover {
+    max-width: 100%;    
+}
+
+.input-number {
+    height: 31px;    
+    text-align: center;
+    border: none;    
+}
+
+.passengers-btn {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: #383838;
+}
+
+.date-text div {
+    display: inline;
+}
+
+#dateButton2 {
+    height: 100%;
+}

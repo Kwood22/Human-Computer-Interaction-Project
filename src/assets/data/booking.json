@@ -1,0 +1,15 @@
+{
+    "booking": {
+        "id": 0,
+        "from": "",
+        "to": "",
+        "date": "",
+        "passengers": {
+            "adult": 1,
+            "youth": 0,
+            "children": 0,
+            "infant": 0
+        },
+        "oneWay": 1
+    }   
+}

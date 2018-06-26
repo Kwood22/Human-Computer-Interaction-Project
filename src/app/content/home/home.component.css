@@ -1,0 +1,60 @@
+header.masthead {
+    position: relative;
+    background-color: #343a40;    
+    background: url('/assets/images/cover-page.jpg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;    
+    height: 100%;
+    margin-top: -61px;
+}
+
+header.masthead .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: .3;
+}
+
+header.masthead h1 {
+    font-size: 2rem;
+}
+
+@media (min-width:768px) {
+    header.masthead {
+        padding-top: 10rem;
+        padding-bottom: 8rem;
+    }
+
+    header.masthead h1 {
+        font-size: 3rem;
+    }
+}
+
+.btn-home {
+    width: 100%;
+    background-color: rgba(48, 107, 216, 0.95);
+    border-color: rgb(48, 107, 216);
+}
+
+.btn-container {
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 20%;
+}
+
+.home-carret {
+    font-size: 36px;
+}
+
+#card-outlet {
+    margin-top: 1rem !important;
+    height: 200px;
+}
